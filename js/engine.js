@@ -12,7 +12,7 @@ var Engine = (function(global) {
         canvas.height = 606;
         doc.body.appendChild(canvas);
 
-    
+    //handles properly calling the update and render methods, and waterCollisions function.
     function main() {
        
         var now = Date.now(),
@@ -26,7 +26,7 @@ var Engine = (function(global) {
 
     };
 
-   
+    //function does some initial setup that should only occur once,
     function init() {
         
         lastTime = Date.now();
@@ -34,7 +34,7 @@ var Engine = (function(global) {
 
     }
 
-   
+    
     function update(dt) {
 
         updateEntities(dt);
@@ -42,7 +42,10 @@ var Engine = (function(global) {
 
     }
 
-    
+    //This is called by the update function  and loops through all of the
+    //objects within your allEnemies array as defined in app.js and calls
+    //their update() methods. It then calls the update function for your
+    //player object.
     function updateEntities(dt) {
 
         allEnemies.forEach(function(enemy) {
@@ -51,7 +54,8 @@ var Engine = (function(global) {
         player.update();
 
     }
-
+     
+    //This returns player to the initial position when it collides with a bug 
     function startover(){
 
         player.x = 200;
@@ -60,7 +64,9 @@ var Engine = (function(global) {
         updateY = 400;
         
     }
-
+    
+    //function increases score when player 
+    //reaches water bounndary and calls startover function
     function waterCollisions(){
         if(player.y === 68){
         score+=10;
